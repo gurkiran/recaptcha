@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>recaptcha</title>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+      <div class="g-recaptcha" data-sitekey="6LcoiSgTAAAAAKxVnt5AwS5z-1ii6TDo86FyYSCL"></div>
+      <button id='form' type="submit" value="Login">Login</button>
+
+  <script>
+
+
+  $('#form').on('click', function(){
+    var credentials = {
+      secret: '6LcoiSgTAAAAACvufzp6YdzVViO-GJ5-SNSSf6EL',
+      response: grecaptcha.getResponse()
+    }
+    $.ajax({
+      url:'https://www.google.com/recaptcha/api/siteverify',
+      type:'POST',
+      data: credentials,
+      success: function(data, status){
+        console.log(data);
+      },
+      error:  function(error, status){
+        console.log(status);
+      }
+
+    })
+  })
+
+
+
+
+  </script>
+</body>
+</html>
